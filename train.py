@@ -6,7 +6,6 @@ __author__ = '10307'
 __mtime__ = '7/11/2020'
 """
 
-# '图卷积'
 import argparse
 import copy
 import json

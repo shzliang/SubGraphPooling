@@ -6,13 +6,9 @@ __author__ = '10307'
 __mtime__ = '7/12/2020'
 """
 import dgl
-import dgl.function as fn  # 使用内置函数并行更新API
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from utils import normalize_features
-import networkx as nx
-import matplotlib.pyplot as plt
 
 class GCNLayer(nn.Module):
 	""" Graph Attention Network """
@@ -123,12 +119,10 @@ class ReadoutLayer(nn.Module):
 		# return torch.cat([node_embedding,edge_embedding],dim=1)
 		return node_embedding
 
-# '读出和分类'
 class Classifier(nn.Module):
 	def __init__(self, in_features, edge_dim, hidden_dim, n_classes, node_attr_name,
 				 edge_attr_name, dropout=0.3, fnc_types:dict=None,nheads=2):
 		super(Classifier, self).__init__()
-		# 两层GCN（图卷积）  一层线性分类
 		self.dropout = dropout
 		self.readout_fnc = fnc_types['readout_fnc']
 		self.node_attr_name = node_attr_name

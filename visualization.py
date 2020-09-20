@@ -13,7 +13,6 @@ from mpl_toolkits.mplot3d import Axes3D
 from sklearn import manifold, datasets
 
 n_points = 1000
-# X是一个(1000, 3)的2维数据，color是一个(1000,)的1维数据
 X, color = datasets.samples_generator.make_s_curve(n_points, random_state=0)
 n_neighbors = 10
 n_components = 2
@@ -38,9 +37,9 @@ def Visualization(data, label, title, fig, n_component=2,dynamic=True):
 	'''t-SNE'''
 	t0 = time()
 	Tsne = manifold.TSNE(n_components=n_component, init='pca', random_state=0)
-	Y = Tsne.fit_transform(data)  # 转换后的输出
+	Y = Tsne.fit_transform(data)
 	t1 = time()
-	print("t-SNE: %.2g sec" % (t1 - t0))  # 算法用时
+	print("t-SNE: %.2g sec" % (t1 - t0))
 	if n_component == 3:
 		fig = plt.figure(figsize=(8, 8))
 		ax = Axes3D(fig)
